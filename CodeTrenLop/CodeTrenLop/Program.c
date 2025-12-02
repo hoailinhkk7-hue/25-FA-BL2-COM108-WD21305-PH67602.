@@ -1,15 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void kiemTraSoNguyen()
 {
 
 		int n;
-		scanf("%d", &n);          
+		scanf_s("%d", &n);          
 		int mang[100];
 
 		for (int i = 0; i < n; i++) 
 		{
-			scanf("%d", &mang[i]);   
+			scanf_s("%d", &mang[i]);   
 		}
 
 		float tong = 0;
@@ -40,13 +41,13 @@ void sapXepMang()
 	int tmp; 
 	int length;
 	printf("Nhap kich thuoc mang: ");
-	scanf("%d", &length);
+	scanf_s("%d", &length);
 	printf("Nhap du lieu cho mang %d phan tu\n", length);
 	//int lenght = sizeof(mangSoNguyen) / sizeof(int);
 	for (int i = 0; i < length ; i++)
 	{
 		printf("mang [%d] = ", i);
-		scanf("%d", &integerArray[i]);
+		scanf_s("%d", &integerArray[i]);
 	}
 	
 
@@ -69,6 +70,27 @@ void sapXepMang()
 	}
 }
 
+void demoMang2Chieu()
+{
+	int array[2][3];
+
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			printf("mang[%d][%d] = ", i, j);
+			scanf("%d, ", &array[i][j]);
+		}
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			printf("%d, ", array[i][j]);
+		}
+		printf("\n");
+	}
+}
 
 void lapChucNang(int chonChucNang)
 {
@@ -84,7 +106,7 @@ void lapChucNang(int chonChucNang)
 			sapXepMang();
 			break;
 		case 3:
-			// ham goi chuc nang 3
+			demoMang2Chieu();
 			break;
 		default:
 			printf("Chon sai. Chuc nang hop le [0-3]");
@@ -92,7 +114,7 @@ void lapChucNang(int chonChucNang)
 		}
 
 		printf("Tiep tuc thuc hien chuc nang nay? [1=Co | 0=Khong]: ");
-		scanf("%d", &tiepTuc);
+		scanf_s("%d", &tiepTuc);
 		system("cls");
 	}
 
@@ -109,12 +131,12 @@ int main()
 		printf("\n");
 		printf("2. Sap xep phan tu mang 1 chieu ");
 		printf("\n");
-		printf("3. TEN chuc nang 3");
+		printf("3. De mo Mang 2 Chieu ");
 		printf("\n");
 		printf("0. Thoat");
 		printf("\n");
 		printf("Hay chon chuc nang [0-3]: ");
-		scanf("%d", &chonChucNang);
+		scanf_s("%d", &chonChucNang);
 		lapChucNang(chonChucNang);
 	} while (chonChucNang != 0);
 }
