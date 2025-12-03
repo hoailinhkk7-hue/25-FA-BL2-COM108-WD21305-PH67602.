@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h> // Tham khao
+#include <string.h> // Tham khao
+#include <time.h> // Tham khao
+
+
+#define MAX 100 // Tham khao
+
+
 
 
 
@@ -306,12 +313,57 @@ void muaxe()
     do
     {
         system("cls");
-        printf("Chuong trinh dang phat trien, vui long cho ^^\n");
+
+        system("cls");
+        int phanTramVayVon;
+        printf("Nhap phan tram ban muon vay: ");
+        scanf("%d", &phanTramVayVon);
+
+        int tongGiaXe = 500000000;
+        int soTienVayVon = tongGiaXe * phanTramVayVon / 100;
+        int traTruoc = tongGiaXe - soTienVayVon;
+        int gocPhaiTra = soTienVayVon / 288; // 24 * 12
+        int soTienConLai = soTienVayVon;
+        float lai, tong;
+
+        printf("\nSo tien tra lan dau: %dVND\n", traTruoc);
+        printf("\n+--------+-------------------+-------------------+------------------------+------------------------+\n");
+        printf("| Thang  | Lai phai tra      | Goc phai tra      | Tong phai tra          | So tien con lai        |\n");
+        printf("+--------+-------------------+-------------------+------------------------+------------------------+\n");
+
+        for (int thang = 1; thang <= 288; thang++)
+        {
+            if (soTienConLai > 0)
+            {
+                lai = soTienConLai * 0.006; // 0.6% moi thang
+                tong = lai + gocPhaiTra;
+                soTienConLai -= gocPhaiTra;
+
+                printf("| %-6d | %-17.0f | %-17d | %-22.0f | %-22d |\n",
+                    thang, lai, gocPhaiTra, tong, soTienConLai);
+            }
+            else if (soTienConLai == 0)
+            {
+                printf("| %-6d | %-17.0f | %-17d | %-22.0f | %-22d |\n",
+                    thang, 0.0, gocPhaiTra, (float)gocPhaiTra, 0);
+            }
+        }
+
+        printf("+--------+-------------------+-------------------+------------------------+------------------------+\n");
+
 
         printf("Ban co muon tiep tuc chuc nang nay khong (y/n)? ");
         scanf(" %c", &Tieptuc);
     } while (Tieptuc == 'y' || Tieptuc == 'Y');
 }
+
+struct sinhVien
+{
+    char hoten[50];
+    float diem;
+    char hocluc[20];
+};
+
 
 void thongTin()
 {
@@ -319,7 +371,63 @@ void thongTin()
     do
     {
         system("cls");
-        printf("Chuong trinh dang phat trien, vui long cho ^^\n");
+        int n;
+        struct sinhVien sv[MAX], temp;
+
+        printf("NHap so luong sinh vien: ");
+        scanf("%d", &n);
+        getchar();
+
+
+        for (int i = 0; i < n; i++)
+        {
+            printf("\nSinh vien %d:\n", i + 1);
+            printf("Ho ten: ");
+            fgets(sv[i].hoten, sizeof(sv[i].hoten), stdin);
+            sv[i].hoten[strcspn(sv[i].hoten, "\n")] = '\0';
+
+            printf("So Diem: ");
+            scanf("%f", &sv[i].diem);
+            getchar();
+
+            // hoc luc
+            if (sv[i].diem >= 9.0)
+                strcpy(sv[i].hocluc, "Xuat sac");
+            else if (sv[i].diem >= 8.0)
+                strcpy(sv[i].hocluc, "Gioi");
+            else if (sv[i].diem >= 6.5)
+                strcpy(sv[i].hocluc, "Kha");
+            else if (sv[i].diem >= 5.0)
+                strcpy(sv[i].hocluc, "Trung binh");
+            else
+                strcpy(sv[i].hocluc, "Yeu");
+        }
+
+        // Xep theo diem giam dan
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                if (sv[i].diem < sv[j].diem)
+                {
+                    temp = sv[i];
+                    sv[i] = sv[j];
+                    sv[j] = temp;
+                }
+            }
+        }
+
+
+        printf("\n+------------------------------+--------+----------------+\n");
+        printf("| Ho ten                       | So Diem| Hoc luc        |\n");
+        printf("+------------------------------+--------+----------------+\n");
+
+        for (int i = 0; i < n; i++)
+        {
+            printf("| %-28s | %-6.1f | %-14s |\n", sv[i].hoten, sv[i].diem, sv[i].hocluc);
+        }
+
+        printf("+------------------------------+--------+----------------+\n");
 
         printf("Ban co muon tiep tuc chuc nang nay khong (y/n)? ");
         scanf(" %c", &Tieptuc);
@@ -332,8 +440,53 @@ void game()
     do
     {
         system("cls");
-        printf("Chuong trinh dang phat trien, vui long cho ^^\n");
+        int user[2], system[2], match = 0;
 
+        // Nguoi choi nhap so
+        printf("So thu nhat (01 => 15): ");
+        scanf("%d", &user[0]);
+        printf("So thu hai (01 => 15): ");
+        scanf("%d", &user[1]);
+
+        // check
+        if (user[0] < 1 || user[0] > 15 || user[1] < 1 || user[1] > 15 || user[0] == user[1])
+        {
+            printf("Invalid or duplicate entry number!\n");
+            return 0;
+        }
+
+        // so ngau nhien
+        srand(time(NULL));
+        system[0] = rand() % 15 + 1;
+        do
+        {
+            system[1] = rand() % 15 + 1;
+        } while (system[1] == system[0]); // tranh trung lap so
+
+        printf("\nKet qua cuoi cung: %d va %d\n", system[0], system[1]);
+
+        // so sanh
+        for (int i = 0; i < 2; i++)
+        {
+            if (user[i] == system[0] || user[i] == system[1])
+            {
+                match++;
+            }
+        }
+
+        // hien thi
+        if (match == 2)
+        {
+            printf("Chuc mung ban nhan duoc giai nhat!\n");
+        }
+        else if (match == 1)
+        {
+            printf("Chuc mung ban nhan duoc giai nhi!\n");
+        }
+        else
+        {
+            printf("Chuc ban may man lan sau nhe!\n");
+        }
         printf("Ban co muon tiep tuc chuc nang nay khong (y/n)? ");
         scanf(" %c", &Tieptuc);
     } while (Tieptuc == 'y' || Tieptuc == 'Y');
