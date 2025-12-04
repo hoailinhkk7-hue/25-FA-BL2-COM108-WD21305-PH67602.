@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void kiemTraSoNguyen()
 {
@@ -79,7 +80,7 @@ void demoMang2Chieu()
 		for (int i = 0; i < 2; i++)
 		{
 			printf("mang[%d][%d] = ", i, j);
-			scanf("%d, ", &array[i][j]);
+			scanf_s("%d, ", &array[i][j]);
 		}
 	}
 	for (int i = 0; i < 2; i++)
@@ -91,6 +92,50 @@ void demoMang2Chieu()
 		printf("\n");
 	}
 }
+
+void demoString()
+{
+	//char name[50] = "LinhDDH";
+	//while (getchar() != '\n');
+	//printf("Nhap ten cua ban: ");
+	//fgets(name, sizeof(name), stdin);
+	//printf("%s", name);
+	//printf("\n");
+
+	//printf("%d", strlen(name) - 1);
+	//printf("\n");
+
+	//printf("%s", strcmp("B", "b"));
+	//printf("\n");
+
+
+	char str[5] = "ABC";
+	printf("%s", _strrev("ABC"));
+	printf("\n");
+
+	printf("%s", _strlwr("CHU HOA"));
+	printf("\n");
+
+	printf("%s", _strupr("chu thuong"));
+	printf("\n");
+
+	if (strstr("ABC", "B") != NULL)
+	{
+		printf(strstr("ABC", "D"));
+	}
+	else
+	{
+		printf("Not Found");
+	}
+	
+	printf("\n");
+
+	if (NULL != "")
+	{
+
+	}
+}
+
 
 void lapChucNang(int chonChucNang)
 {
@@ -107,6 +152,9 @@ void lapChucNang(int chonChucNang)
 			break;
 		case 3:
 			demoMang2Chieu();
+			break;
+		case 4:
+			demoString();
 			break;
 		default:
 			printf("Chon sai. Chuc nang hop le [0-3]");
@@ -132,6 +180,8 @@ int main()
 		printf("2. Sap xep phan tu mang 1 chieu ");
 		printf("\n");
 		printf("3. De mo Mang 2 Chieu ");
+		printf("\n");
+		printf("4. De mo String");
 		printf("\n");
 		printf("0. Thoat");
 		printf("\n");

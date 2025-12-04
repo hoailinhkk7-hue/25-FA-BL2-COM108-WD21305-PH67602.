@@ -383,7 +383,7 @@ void thongTin()
         {
             printf("\nSinh vien %d:\n", i + 1);
             printf("Ho ten: ");
-            fgets(sv[i].hoten, sizeof(sv[i].hoten), stdin);
+            fgets(sv[i].hoten, sizeof(sv[i].hoten), stdin);  // tham khao
             sv[i].hoten[strcspn(sv[i].hoten, "\n")] = '\0';
 
             printf("So Diem: ");
