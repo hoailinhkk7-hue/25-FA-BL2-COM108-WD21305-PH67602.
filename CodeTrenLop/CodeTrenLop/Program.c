@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
 
 void kiemTraSoNguyen()
 {
@@ -116,7 +117,7 @@ void demoString()
 	printf("%s", _strlwr("CHU HOA"));
 	printf("\n");
 
-	printf("%s", _strupr("chu thuong"));
+	printf("%s", _strupr_s("chu thuong"));
 	printf("\n");
 
 	if (strstr("ABC", "B") != NULL)
