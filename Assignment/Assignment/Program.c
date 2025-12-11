@@ -498,7 +498,40 @@ void phanso()
     do
     {
         system("cls");
-        printf("Chuong trinh dang phat trien, vui long cho ^^\n");
+        int a, b, c, d;
+
+        printf("Nhap tu so cua phan so 1: ");
+        scanf("%d", &a);
+        printf("Nhap mau so cua phan so 1: ");
+        scanf("%d", &b);
+
+        printf("Nhap tu so cua phan so 2: ");
+        scanf("%d", &c);
+        printf("Nhap mauv so cua phan so 2: ");
+        scanf("%d", &d);
+
+        printf("Ket Qua:\n");
+        printf("\n");
+
+        int tongTu = a * d + c * b;
+        int tongMau = b * d;
+        printf("Tong: %d/%d\n", tongTu, tongMau);
+        printf("\n");
+
+        int hieuTu = a * d - c * b;
+        int hieuMau = b * d;
+        printf("Hieu: %d/%d\n", hieuTu, hieuMau);
+        printf("\n");
+
+        int tichTu = a * c;
+        int tichMau = b * d;
+        printf("Tich: %d/%d\n", tichTu, tichMau);
+        printf("\n");
+
+        int thuongTu = a * d;
+        int thuongMau = b * c;
+        printf("Thuong: %d/%d\n", thuongTu, thuongMau);
+        printf("\n");
 
         printf("Ban co muon tiep tuc chuc nang nay khong (y/n)? ");
         scanf(" %c", &Tieptuc);

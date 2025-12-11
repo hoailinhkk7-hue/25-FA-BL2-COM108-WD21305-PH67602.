@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define _CRT_SECURE_NO_WARNINGS
+#include <time.h>
+
+
 
 void kiemTraSoNguyen()
 {
@@ -96,46 +98,65 @@ void demoMang2Chieu()
 
 void demoString()
 {
-	//char name[50] = "LinhDDH";
-	//while (getchar() != '\n');
-	//printf("Nhap ten cua ban: ");
-	//fgets(name, sizeof(name), stdin);
-	//printf("%s", name);
-	//printf("\n");
-
-	//printf("%d", strlen(name) - 1);
-	//printf("\n");
-
-	//printf("%s", strcmp("B", "b"));
-	//printf("\n");
-
-
-	char str[5] = "ABC";
-	printf("%s", _strrev("ABC"));
+	char name[50] = "LinhDDH";
+	while (getchar() != '\n');
+	printf("Nhap ten cua ban: ");
+	fgets(name, sizeof(name), stdin);
+	printf("%s", name);
 	printf("\n");
 
-	printf("%s", _strlwr("CHU HOA"));
+	printf("%d", strlen(name) - 1);
 	printf("\n");
 
-	printf("%s", _strupr_s("chu thuong"));
+	printf("%s", strcmp("B", "b"));
 	printf("\n");
 
-	if (strstr("ABC", "B") != NULL)
-	{
-		printf(strstr("ABC", "D"));
-	}
-	else
-	{
-		printf("Not Found");
-	}
-	
-	printf("\n");
-
-	if (NULL != "")
-	{
-
-	}
 }
+	
+
+void thongTinThuCung()
+{
+	system("cls");
+	char maThuCung[10];
+	char tenThuCung[50];
+	int namSinh;
+	int tuoi;
+	printf("Nhap ma thu cung: ");
+	scanf_s("%s", maThuCung, sizeof(maThuCung));
+	printf("Nhap ten thu cung: ");
+	scanf_s("%s", tenThuCung, sizeof(tenThuCung));
+	printf("Nhap nam sinh thu cung: ");
+	scanf_s("%d", &namSinh);
+	tuoi = 2025 - namSinh;
+	printf("\n");
+	printf("Ma thu cung: %s\n", maThuCung);
+	printf("Ten thu cung: %s\n", tenThuCung);
+	printf("Tuoi thu cung: %d\n", tuoi);
+}
+
+
+void tinhTongVaKiemTra()
+{
+	int n, tong = 0;
+	printf("Nhap mot so nguyen duong n (n > 3): ");
+	scanf_s("%d", &n);
+	if (n <= 3)
+	{
+		printf("n phai lon hon 3.\n");
+	}
+
+	for (int i = 1; i <= n; i += 2)
+	{
+		tong += i;
+	}
+	printf("Tong cac so le tu 1 den %d la: %d\n", n, tong);
+
+	if (n % 5 == 0)
+		printf("%d la so chia het cho 5.\n", n);
+	else
+		printf("%d khong phai so chia het cho 5.\n", n);
+}
+
 
 
 void lapChucNang(int chonChucNang)
@@ -157,6 +178,12 @@ void lapChucNang(int chonChucNang)
 		case 4:
 			demoString();
 			break;
+		case 5:
+			thongTinThuCung();
+			break;
+		case 6:
+			tinhTongVaKiemTra();
+			break;
 		default:
 			printf("Chon sai. Chuc nang hop le [0-3]");
 			break;
@@ -168,6 +195,8 @@ void lapChucNang(int chonChucNang)
 	}
 
 }
+
+
 
 int main()
 {
@@ -184,9 +213,13 @@ int main()
 		printf("\n");
 		printf("4. De mo String");
 		printf("\n");
+		printf("5.Thong tin thu cung");
+		printf("\n");
+		printf("6.Tinh tong va kiem tra");
+		printf("\n");
 		printf("0. Thoat");
 		printf("\n");
-		printf("Hay chon chuc nang [0-3]: ");
+		printf("Hay chon chuc nang [0-5]: ");
 		scanf_s("%d", &chonChucNang);
 		lapChucNang(chonChucNang);
 	} while (chonChucNang != 0);
@@ -194,3 +227,4 @@ int main()
 
 
 // GV: AnhTT184
+
